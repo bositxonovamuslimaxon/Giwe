@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaGiveaway - Instagram Tanlov Tahlili</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">InstaGiveaway yuklanmoqda...</div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fab fa-instagram"></i>
+                <span>InstaGiveaway</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Bosh Sahifa</a>
+                <a href="#features" class="nav-link">Xususiyatlar</a>
+                <a href="#how-it-works" class="nav-link">Qanday Ishlasa</a>
+                <button class="btn-login" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Kirish
+                </button>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Instagram <span class="highlight">Tanlovlaringizni</span><br>
+                    Avtomatik Boshqaring
+                </h1>
+                <p class="hero-subtitle">
+                    Postingizdagi komment, layk va obunachilarni avtomatik tahlil qiling.<br>
+                    G'oliblarni bir tugma bosish bilan tanlang!
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="startGiveawayBtn">
+                        <i class="fas fa-rocket"></i> Tanlovni Boshlash
+                    </button>
+                    <button class="btn-secondary" id="demoBtn">
+                        <i class="fas fa-play-circle"></i> Demo Ko'rish
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="usersCount">1,234+</div>
+                        <div class="stat-label">Foydalanuvchilar</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="giveawaysCount">5,678+</div>
+                        <div class="stat-label">Tanlovlar</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="winnersCount">12,345+</div>
+                        <div class="stat-label">G'oliblar</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="instagram-post">
+                            <div class="post-header">
+                                <div class="post-avatar">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="post-user-info">
+                                    <div class="post-username">tanlov_master</div>
+                                    <div class="post-time">Sponsored • Giveaway</div>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <div class="post-image">
+                                    <div class="giveaway-badge">
+                                        <i class="fas fa-gift"></i> TANLOV
+                                    </div>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="action-btn like-btn">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn comment-btn">
+                                        <i class="fas fa-comment"></i>
+                                    </button>
+                                    <button class="action-btn share-btn">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                    <button class="action-btn save-btn">
+                                        <i class="fas fa-bookmark"></i>
+                                    </button>
+                                </div>
+                                <div class="post-likes">
+                                    <strong>1,234 likes</strong>
+                                </div>
+                                <div class="post-caption">
+                                    <strong>tanlov_master</strong> iPhone 14 PRO MAX tanlovi! 🎁
+                                    <br>G'olibni InstaGiveaway orqali tanlaymiz!
+                                </div>
+                                <div class="post-comments">
+                                    <div class="comment">
+                                        <strong>user1:</strong> Men qatnashyapman! 😍
+                                    </div>
+                                    <div class="comment">
+                                        <strong>user2:</strong> Omad tilayman hammaga!
+                                    </div>
+                                    <div class="comment">
+                                        <strong>user3:</strong> InstaGiveaway zo'r ishlaydi!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Nega InstaGiveaway?</h2>
+            <p class="section-subtitle">Instagram tanlovlaringizni soddalashtiring</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Tezkor Tahlil</h3>
+                    <p class="feature-desc">Postingizdagi barcha komment va layklarni sekundlar ichida tahlil qilamiz</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="feature-title">Haqiqiy Foydalanuvchilar</h3>
+                    <p class="feature-desc">Faqat haqiqiy Instagram foydalanuvchilari orasidan g'oliblarni tanlaymiz</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3 class="feature-title">Adolatli Tanlov</h3>
+                    <p class="feature-desc">Har bir ishtirokchi teng imkoniyatga ega bo'ladi</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Spamdan Himoya</h3>
+                    <p class="feature-desc">Bot va spam kommentlarni avtomatik filtrlash</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-title">Batafsil Statistika</h3>
+                    <p class="feature-desc">Tanlov statistikasi va natijalarni ko'rish</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="feature-title">Natijalarni Yuklash</h3>
+                    <p class="feature-desc">G'oliblar ro'yxatini yuklab oling va Instagram'da e'lon qiling</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">3 Oddiy Qadamda G'oliblarni Tanlang</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Instagramga Kirish</h3>
+                        <p>Instagram akkauntingizga xavfsiz kirish</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Postni Tanlash</h3>
+                        <p>Tanlov uchun postingizni tanlang</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>G'oliblarni Tanlash</h3>
+                        <p>Bir tugma bosish bilan g'oliblarni tanlang</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-section">
+                <button class="btn-primary btn-large" id="ctaBtn">
+                    <i class="fas fa-magic"></i> Hoziroq Boshlang
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Instagram Akkauntingizga Kirish</h3>
+                <button class="modal-close" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="login-options">
+                    <button class="instagram-login-btn" id="realLoginBtn">
+                        <i class="fab fa-instagram"></i> Instagram orqali Kirish
+                    </button>
+                    <div class="divider">
+                        <span>yoki</span>
+                    </div>
+                    <button class="demo-login-btn" id="quickDemoBtn">
+                        <i class="fas fa-bolt"></i> Tezkor Demo
+                    </button>
+                </div>
+                <div class="login-info">
+                    <h4><i class="fas fa-info-circle"></i> Qanday ishlaydi?</h4>
+                    <ol>
+                        <li>Instagram akkauntingizga xavfsiz kirish</li>
+                        <li>Postingizni tanlash</li>
+                        <li>G'oliblarni tanlash mezonlarini belgilash</li>
+                        <li>Natijalarni olish</li>
+                    </ol>
+                    <div class="security-note">
+                        <i class="fas fa-lock"></i> 
+                        <span>Ma'lumotlaringiz xavfsiz. Faqat tanlov tahlili uchun ishlatiladi.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (hidden initially) -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        <!-- App content will be loaded here -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>InstaGiveaway</h3>
+                    <p>Instagram tanlovlaringizni soddalashtiring va avtomatlashtiring</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Tez Havolalar</h3>
+                    <a href="#home">Bosh Sahifa</a>
+                    <a href="#features">Xususiyatlar</a>
+                    <a href="#how-it-works">Qanday Ishlasa</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Yordam</h3>
+                    <a href="#" id="contactBtn">Aloqa</a>
+                    <a href="#" id="faqBtn">Savol-Javob</a>
+                    <a href="#" id="privacyBtn">Maxfiylik</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 InstaGiveaway. Barcha huquqlar himoyalangan.</p>
+                <p>Bu loyiha faqat o'quv maqsadlarida yaratilgan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
