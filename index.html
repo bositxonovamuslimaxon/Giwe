@@ -3,127 +3,1075 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaGiveaway - Instagram Tanlov Tahlili</title>
-    <link rel="stylesheet" href="style.css">
+    <title>GiveawayGenie.com - Instagram Tanlovlari</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #E4405F;
+            --primary-dark: #C13584;
+            --secondary: #405DE6;
+            --success: #10B981;
+            --light: #F8FAFC;
+            --dark: #121212;
+            --gray: #8E8E8E;
+            --border: #DBDBDB;
+            --instagram-gradient: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background: #FAFAFA;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            background: var(--instagram-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--instagram-gradient);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(228, 64, 95, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-large {
+            padding: 14px 32px;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, #faf0ff 0%, #fce4ff 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .highlight {
+            background: var(--instagram-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-width: 140px;
+        }
+
+        .stat h3 {
+            font-size: 32px;
+            background: var(--instagram-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .stat p {
+            color: var(--gray);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .instagram-post-preview {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        /* Instagram Post Stili */
+        .instagram-post {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .post-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--instagram-gradient);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .post-user {
+            flex: 1;
+        }
+
+        .post-username {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--dark);
+        }
+
+        .post-meta {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .post-more {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #833AB4, #E1306C, #F77737);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .post-image-content {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .post-image-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .post-actions {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .action-icon {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .action-icon:hover {
+            color: var(--primary);
+        }
+
+        .action-icon.liked {
+            color: var(--primary);
+        }
+
+        .post-likes {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .post-caption {
+            font-size: 14px;
+            color: var(--dark);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .post-caption .username {
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        .post-comments {
+            padding: 8px 16px 16px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .comment {
+            display: flex;
+            margin-bottom: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            background: #F8F8F8;
+            transition: all 0.3s;
+        }
+
+        .comment.highlighted {
+            background: #FFF5F7;
+            border: 2px solid var(--primary);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .comment-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--border);
+            margin-right: 8px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-username {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .comment-text {
+            font-size: 13px;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .comment-time {
+            font-size: 11px;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            border-radius: 16px;
+            background: #FFF5F7;
+            transition: transform 0.3s;
+            border: 1px solid #FFE4E9;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(228, 64, 95, 0.1);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--instagram-gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 15px;
+            font-size: 20px;
+        }
+
+        .step-icon {
+            font-size: 48px;
+            background: var(--instagram-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Giveaway Form */
+        .giveaway-form {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #faf0ff 0%, #fce4ff 100%);
+        }
+
+        .form-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-size: 15px;
+        }
+
+        .form-group i {
+            color: var(--primary);
+        }
+
+        .form-group input[type="url"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background: #FAFAFA;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(228, 64, 95, 0.1);
+        }
+
+        .help-text {
+            display: block;
+            margin-top: 6px;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #FAFAFA;
+        }
+
+        .radio-option:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .radio-option input {
+            margin: 0;
+        }
+
+        .radio-option.selected {
+            border-color: var(--primary);
+            background: #FFF5F7;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Results */
+        .results {
+            margin-top: 30px;
+            padding: 30px;
+            background: #FAFAFA;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .winner-list {
+            margin-top: 20px;
+        }
+
+        .winner-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+
+        .winner-card:hover {
+            transform: translateX(5px);
+            border-color: var(--primary);
+        }
+
+        .winner-card i {
+            color: #FFD700;
+            font-size: 28px;
+        }
+
+        .winner-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .winner-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 16px;
+            background: #FAFAFA;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: white;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            background: var(--instagram-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-logo i {
+            font-size: 36px;
+            background: var(--instagram-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-logo h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .footer-links a {
+            color: #CBD5E1;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #CBD5E1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #8B9BB2;
+            font-size: 14px;
+        }
+
+        /* Comment Analysis */
+        .comment-analysis {
+            background: #F8F9FF;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #E6E9FF;
+        }
+
+        .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .analysis-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* URL Error */
+        .url-error {
+            color: var(--primary);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease;
+            display: none;
+        }
+
+        .notification.info {
+            background: #2196F3;
+        }
+
+        .notification.warning {
+            background: #FF9800;
+        }
+
+        .notification.success {
+            background: #4CAF50;
+        }
+
+        .notification.error {
+            background: #F44336;
+        }
+
+        /* Settings Panel */
+        .settings-panel {
+            background: #F8F9FA;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .settings-panel h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .method-option {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .method-option:hover {
+            border-color: var(--primary);
+        }
+
+        .method-option.selected {
+            border-color: var(--primary);
+            background: #FFF5F7;
+        }
+
+        .method-option strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .method-option small {
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .credentials {
+            margin-top: 10px;
+            padding: 15px;
+            background: #F8F9FA;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .credentials input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        .warning {
+            color: #FF9800;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero .container,
+            .steps,
+            .features-grid,
+            .footer-content,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 20px;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-radius: 0 0 10px 10px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+            }
+            
+            .stat {
+                min-width: 120px;
+            }
+            
+            .instagram-post {
+                max-width: 100%;
+            }
+            
+            .post-image {
+                height: 300px;
+            }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loader">
-            <div class="loader-circle"></div>
-            <div class="loader-text">InstaGiveaway yuklanmoqda...</div>
-        </div>
-    </div>
-
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">
-                <i class="fab fa-instagram"></i>
-                <span>InstaGiveaway</span>
+            <a href="#" class="logo">
+                <i class="fas fa-magic"></i>
+                <h1>GiveawayGenie</h1>
+            </a>
+            <div class="nav-links">
+                <a href="#home">Bosh sahifa</a>
+                <a href="#how-it-works">Qanday ishlaydi</a>
+                <a href="#features">Xususiyatlar</a>
+                <button class="btn-primary" onclick="startGiveaway()">Tanlov Boshlash</button>
             </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active">Bosh Sahifa</a>
-                <a href="#features" class="nav-link">Xususiyatlar</a>
-                <a href="#how-it-works" class="nav-link">Qanday Ishlasa</a>
-                <button class="btn-login" id="loginBtn">
-                    <i class="fas fa-sign-in-alt"></i> Kirish
-                </button>
-            </div>
-            <button class="menu-toggle" id="menuToggle">
+            <button class="menu-btn" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    Instagram <span class="highlight">Tanlovlaringizni</span><br>
-                    Avtomatik Boshqaring
-                </h1>
-                <p class="hero-subtitle">
-                    Postingizdagi komment, layk va obunachilarni avtomatik tahlil qiling.<br>
-                    G'oliblarni bir tugma bosish bilan tanlang!
-                </p>
+                <h1>Instagram <span class="highlight">Tanlovlaringizni</span><br>Avtomatlashtiring</h1>
+                <p>Instagram postingiz linkini qo'ying, g'oliblarni biz tanlab beramiz.<br><strong>100% bepul!</strong></p>
                 <div class="hero-buttons">
-                    <button class="btn-primary" id="startGiveawayBtn">
-                        <i class="fas fa-rocket"></i> Tanlovni Boshlash
+                    <button class="btn-primary btn-large" onclick="startGiveaway()">
+                        <i class="fas fa-plus-circle"></i> Yangi Tanlov
                     </button>
-                    <button class="btn-secondary" id="demoBtn">
-                        <i class="fas fa-play-circle"></i> Demo Ko'rish
+                    <button class="btn-secondary btn-large" onclick="scrollToHow()">
+                        <i class="fas fa-play-circle"></i> Qanday ishlaydi
                     </button>
                 </div>
                 <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number" id="usersCount">1,234+</div>
-                        <div class="stat-label">Foydalanuvchilar</div>
+                    <div class="stat">
+                        <h3>10,000+</h3>
+                        <p>Tanlov o'tkazilgan</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="giveawaysCount">5,678+</div>
-                        <div class="stat-label">Tanlovlar</div>
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <p>Bepul xizmat</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="winnersCount">12,345+</div>
-                        <div class="stat-label">G'oliblar</div>
+                    <div class="stat">
+                        <h3>5 daqiqa</h3>
+                        <p>O'rnatish vaqti</p>
                     </div>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="instagram-post">
-                            <div class="post-header">
-                                <div class="post-avatar">
-                                    <i class="fab fa-instagram"></i>
-                                </div>
-                                <div class="post-user-info">
-                                    <div class="post-username">tanlov_master</div>
-                                    <div class="post-time">Sponsored • Giveaway</div>
-                                </div>
+                <div class="instagram-post-preview">
+                    <div class="instagram-post">
+                        <div class="post-header">
+                            <div class="post-avatar">IG</div>
+                            <div class="post-user">
+                                <div class="post-username">instagram_user</div>
+                                <div class="post-meta">Sponsored • Giveaway</div>
                             </div>
-                            <div class="post-content">
-                                <div class="post-image">
-                                    <div class="giveaway-badge">
-                                        <i class="fas fa-gift"></i> TANLOV
-                                    </div>
-                                </div>
-                                <div class="post-actions">
-                                    <button class="action-btn like-btn">
-                                        <i class="fas fa-heart"></i>
-                                    </button>
-                                    <button class="action-btn comment-btn">
-                                        <i class="fas fa-comment"></i>
-                                    </button>
-                                    <button class="action-btn share-btn">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                    <button class="action-btn save-btn">
-                                        <i class="fas fa-bookmark"></i>
-                                    </button>
-                                </div>
-                                <div class="post-likes">
-                                    <strong>1,234 likes</strong>
-                                </div>
-                                <div class="post-caption">
-                                    <strong>tanlov_master</strong> iPhone 14 PRO MAX tanlovi! 🎁
-                                    <br>G'olibni InstaGiveaway orqali tanlaymiz!
-                                </div>
-                                <div class="post-comments">
-                                    <div class="comment">
-                                        <strong>user1:</strong> Men qatnashyapman! 😍
-                                    </div>
-                                    <div class="comment">
-                                        <strong>user2:</strong> Omad tilayman hammaga!
-                                    </div>
-                                    <div class="comment">
-                                        <strong>user3:</strong> InstaGiveaway zo'r ishlaydi!
-                                    </div>
-                                </div>
+                            <button class="post-more">⋯</button>
+                        </div>
+                        <div class="post-image">
+                            <div class="post-image-content">
+                                <h3>🎁 G'OLIB UCHUN</h3>
+                                <p>iPhone 14 PRO MAX</p>
+                                <p>Tanlov davom etmoqda!</p>
                             </div>
+                        </div>
+                        <div class="post-actions">
+                            <div class="action-icons">
+                                <button class="action-icon liked"><i class="fas fa-heart"></i></button>
+                                <button class="action-icon"><i class="far fa-comment"></i></button>
+                                <button class="action-icon"><i class="far fa-paper-plane"></i></button>
+                                <button class="action-icon" style="margin-left: auto;"><i class="far fa-bookmark"></i></button>
+                            </div>
+                            <div class="post-likes">1,234 likes</div>
+                            <div class="post-caption">
+                                <span class="username">instagram_user</span>
+                                G'olib uchun iPhone 14! 🎁
+                                <br>👇 Qatnashish uchun:
+                                <br>1. Bu postga like bosing
+                                <br>2. Do'stlaringizga tag qiling
+                                <br>3. Izohda "Men" deb yozing
+                                <br><br>#giveaway #iphone #instagiveaway
+                            </div>
+                        </div>
+                        <div class="post-comments" id="postComments">
+                            <!-- Comments will be loaded here -->
                         </div>
                     </div>
                 </div>
@@ -131,167 +1079,891 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">Nega InstaGiveaway?</h2>
-            <p class="section-subtitle">Instagram tanlovlaringizni soddalashtiring</p>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title">Tezkor Tahlil</h3>
-                    <p class="feature-desc">Postingizdagi barcha komment va layklarni sekundlar ichida tahlil qilamiz</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3 class="feature-title">Haqiqiy Foydalanuvchilar</h3>
-                    <p class="feature-desc">Faqat haqiqiy Instagram foydalanuvchilari orasidan g'oliblarni tanlaymiz</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-random"></i>
-                    </div>
-                    <h3 class="feature-title">Adolatli Tanlov</h3>
-                    <p class="feature-desc">Har bir ishtirokchi teng imkoniyatga ega bo'ladi</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="feature-title">Spamdan Himoya</h3>
-                    <p class="feature-desc">Bot va spam kommentlarni avtomatik filtrlash</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3 class="feature-title">Batafsil Statistika</h3>
-                    <p class="feature-desc">Tanlov statistikasi va natijalarni ko'rish</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-download"></i>
-                    </div>
-                    <h3 class="feature-title">Natijalarni Yuklash</h3>
-                    <p class="feature-desc">G'oliblar ro'yxatini yuklab oling va Instagram'da e'lon qiling</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
+    <!-- How It Works -->
     <section class="how-it-works" id="how-it-works">
         <div class="container">
             <h2 class="section-title">3 Oddiy Qadamda G'oliblarni Tanlang</h2>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Instagramga Kirish</h3>
-                        <p>Instagram akkauntingizga xavfsiz kirish</p>
-                    </div>
+                    <i class="fas fa-link step-icon"></i>
+                    <h3>Instagram Linkini Joylang</h3>
+                    <p>Instagram postingizning to'liq linkini nusxalab, bizga yuboring</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Postni Tanlash</h3>
-                        <p>Tanlov uchun postingizni tanlang</p>
-                    </div>
+                    <i class="fas fa-search step-icon"></i>
+                    <h3>Post Tahlili</h3>
+                    <p>Biz postingizdagi barcha izohlarni avtomatik skanerlaymiz</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>G'oliblarni Tanlash</h3>
-                        <p>Bir tugma bosish bilan g'oliblarni tanlang</p>
-                    </div>
+                    <i class="fas fa-trophy step-icon"></i>
+                    <h3>G'oliblarni Tanlang</h3>
+                    <p>Izohlar orasidan tasodifiy va adolatli g'oliblarni tanlaymiz</p>
                 </div>
-            </div>
-            <div class="cta-section">
-                <button class="btn-primary btn-large" id="ctaBtn">
-                    <i class="fas fa-magic"></i> Hoziroq Boshlang
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Instagram Akkauntingizga Kirish</h3>
-                <button class="modal-close" id="closeLoginModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="login-options">
-                    <button class="instagram-login-btn" id="realLoginBtn">
-                        <i class="fab fa-instagram"></i> Instagram orqali Kirish
-                    </button>
-                    <div class="divider">
-                        <span>yoki</span>
+    <!-- Giveaway Form -->
+    <section class="giveaway-form" id="giveaway-form">
+        <div class="container">
+            <h2 class="section-title">Instagram Postingizni Qo'shing</h2>
+            <div class="form-card">
+                <!-- Settings Panel -->
+                <div class="settings-panel" id="settingsPanel">
+                    <h4><i class="fas fa-cog"></i> Ish Rejimi Sozlamalari</h4>
+                    
+                    <div class="method-option selected" onclick="selectMethodOption(this, 'demo')">
+                        <div>
+                            <strong>🏠 Demo Rejim</strong>
+                            <small>Simulyatsiya qilingan ma'lumotlar (hozir ishlaydi)</small>
+                        </div>
                     </div>
-                    <button class="demo-login-btn" id="quickDemoBtn">
-                        <i class="fas fa-bolt"></i> Tezkor Demo
-                    </button>
+                    
+                    <div class="method-option" onclick="selectMethodOption(this, 'api')">
+                        <div>
+                            <strong>🔗 Haqiqiy Instagram API</strong>
+                            <small>Instagram Business hisobi va API token kerak</small>
+                        </div>
+                    </div>
+                    
+                    <div class="method-option" onclick="selectMethodOption(this, 'scrape')">
+                        <div>
+                            <strong>⚡ Ochiq manba Scraper</strong>
+                            <small>Instagram login kerak (test hisob tavsiya etiladi)</small>
+                        </div>
+                        <div class="credentials" id="scrapeCredentials" style="display: none;">
+                            <input type="text" id="igUsername" placeholder="Instagram username">
+                            <input type="password" id="igPassword" placeholder="Instagram password">
+                            <div class="warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Parolingiz faqat sizning serveringizda saqlanadi
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="method-option" onclick="selectMethodOption(this, 'backend')">
+                        <div>
+                            <strong>🌐 O'z Backendingiz</strong>
+                            <small>API endpoint manzilini kiriting</small>
+                        </div>
+                        <div class="credentials" id="backendCredentials" style="display: none;">
+                            <input type="url" id="apiEndpoint" 
+                                   placeholder="https://your-backend.herokuapp.com/api/scrape"
+                                   value="https://your-backend.herokuapp.com/api/instagram/scrape">
+                            <div class="help-text">Backend API endpoint manzili</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="login-info">
-                    <h4><i class="fas fa-info-circle"></i> Qanday ishlaydi?</h4>
-                    <ol>
-                        <li>Instagram akkauntingizga xavfsiz kirish</li>
-                        <li>Postingizni tanlash</li>
-                        <li>G'oliblarni tanlash mezonlarini belgilash</li>
-                        <li>Natijalarni olish</li>
-                    </ol>
-                    <div class="security-note">
-                        <i class="fas fa-lock"></i> 
-                        <span>Ma'lumotlaringiz xavfsiz. Faqat tanlov tahlili uchun ishlatiladi.</span>
+
+                <div class="form-row">
+                    <div>
+                        <div class="form-group">
+                            <label for="postUrl">
+                                <i class="fab fa-instagram"></i> Instagram Post Linki
+                            </label>
+                            <input type="url" id="postUrl" 
+                                   placeholder="https://www.instagram.com/p/ABC123..."
+                                   value="https://www.instagram.com/p/Cxample123/">
+                            <div class="help-text">Instagram postingizning to'liq linkini kiriting</div>
+                            <div class="url-error" id="urlError">Iltimos, Instagram post linkini kiriting!</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="winnersCount">
+                                <i class="fas fa-users"></i> G'oliblar Soni
+                            </label>
+                            <input type="number" id="winnersCount" min="1" max="50" value="3">
+                            <div class="help-text">1 dan 50 gacha g'olib tanlashingiz mumkin</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-filter"></i> Tanlash Usuli</label>
+                            <div class="radio-group">
+                                <label class="radio-option selected" onclick="selectMethod(this, 'comments')">
+                                    <input type="radio" name="selectionMethod" value="comments" checked>
+                                    <span>Faqat Izohlar</span>
+                                </label>
+                                <label class="radio-option" onclick="selectMethod(this, 'likes')">
+                                    <input type="radio" name="selectionMethod" value="likes">
+                                    <span>Faqat Layklar</span>
+                                </label>
+                                <label class="radio-option" onclick="selectMethod(this, 'both')">
+                                    <input type="radio" name="selectionMethod" value="both">
+                                    <span>Ikkalasi Ham</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary btn-large" onclick="analyzePost()" id="analyzeBtn" style="width: 100%;">
+                            <i class="fas fa-search"></i> Postni Tahlil Qilish
+                        </button>
                     </div>
+
+                    <div>
+                        <div class="instagram-post-preview">
+                            <div class="instagram-post" id="dynamicPost">
+                                <!-- Dynamic post will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Instagram post tahlil qilinmoqda...</p>
+                    <p><small>Izohlar yuklanmoqda va tahlil qilinmoqda</small></p>
+                </div>
+
+                <div id="analysisResults" class="comment-analysis" style="display: none;">
+                    <!-- Analysis results will be shown here -->
+                </div>
+
+                <div id="results" class="results" style="display: none;">
+                    <!-- Results will be shown here -->
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Main App (hidden initially) -->
-    <div class="app-container" id="appContainer" style="display: none;">
-        <!-- App content will be loaded here -->
-    </div>
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Nima Uchun GiveawayGenie?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bolt feature-icon"></i>
+                    <h3>Tezkor Tahlil</h3>
+                    <p>Instagram post izohlarini soniyalar ichida skanerlaymiz</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-eye feature-icon"></i>
+                    <h3>Haqiqiy Post Ko'rinishi</h3>
+                    <p>Postingizni Instagram dagi ko'rinishida namoyish etamiz</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-comments feature-icon"></i>
+                    <h3>Izohlar Asosida</h3>
+                    <p>G'oliblar faqat post izohlari orasidan tanlanadi</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3>Spam Himoyasi</h3>
+                    <p>Avtomatik spam va bot izohlari filtrlanadi</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-random feature-icon"></i>
+                    <h3>Adolatli Tanlov</h3>
+                    <p>Har bir izoh teng imkoniyatga ega bo'ladi</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt feature-icon"></i>
+                    <h3>Mobil Optimallashtirilgan</h3>
+                    <p>Telefon yoki planshetda mukammal ishlaydi</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>InstaGiveaway</h3>
-                    <p>Instagram tanlovlaringizni soddalashtiring va avtomatlashtiring</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
+                <div class="footer-logo">
+                    <i class="fas fa-magic"></i>
+                    <h2>GiveawayGenie</h2>
+                    <p>Instagram tanlovlaringizni soddalashtiring</p>
                 </div>
-                <div class="footer-section">
+                <div class="footer-links">
                     <h3>Tez Havolalar</h3>
-                    <a href="#home">Bosh Sahifa</a>
+                    <a href="#home">Bosh sahifa</a>
+                    <a href="#how-it-works">Qanday ishlaydi</a>
                     <a href="#features">Xususiyatlar</a>
-                    <a href="#how-it-works">Qanday Ishlasa</a>
+                    <a href="#giveaway-form">Tanlov yaratish</a>
                 </div>
-                <div class="footer-section">
-                    <h3>Yordam</h3>
-                    <a href="#" id="contactBtn">Aloqa</a>
-                    <a href="#" id="faqBtn">Savol-Javob</a>
-                    <a href="#" id="privacyBtn">Maxfiylik</a>
+                <div class="footer-contact">
+                    <h3>Aloqa</h3>
+                    <p><i class="fas fa-globe"></i> giveawaygenie.com</p>
+                    <p><i class="fas fa-envelope"></i> info@giveawaygenie.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 InstaGiveaway. Barcha huquqlar himoyalangan.</p>
-                <p>Bu loyiha faqat o'quv maqsadlarida yaratilgan.</p>
+                <p>&copy; 2024 GiveawayGenie.com. Barcha huquqlar himoyalangan.</p>
+                <p>Bu loyiha ochiq manba hisoblanadi. API token talab qilmaydi.</p>
+                <p style="margin-top: 10px;">
+                    <i class="fab fa-github"></i> 
+                    <a href="https://github.com/yourusername/giveawaygenie" style="color: #8B9BB2; text-decoration: none;">
+                        GitHub da ochiq manba kodi
+                    </a>
+                </p>
             </div>
         </div>
     </footer>
 
-    <script src="app.js"></script>
+    <script>
+        // To'liq ishlaydigan JavaScript kodlari
+        let currentPostData = null;
+        let currentComments = [];
+        let currentMethod = 'demo'; // demo, api, scrape, backend
+        let backendEndpoint = 'https://your-backend.herokuapp.com/api/instagram/scrape';
+        
+        // 1. Menyuni ochish/yopish
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+        
+        // 2. "Qanday ishlaydi" bo'limiga scroll
+        function scrollToHow() {
+            document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 3. Tanlov boshlash bo'limiga scroll
+        function startGiveaway() {
+            document.getElementById('giveaway-form').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 4. Tanlash usulini belgilash
+        function selectMethod(element, method) {
+            document.querySelectorAll('.radio-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            document.querySelector(`input[value="${method}"]`).checked = true;
+        }
+        
+        // 5. Ish rejimini tanlash
+        function selectMethodOption(element, method) {
+            // Barcha optionlardan selected klassini olib tashlash
+            document.querySelectorAll('.method-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Tanlangan elementga selected klassini qo'shish
+            element.classList.add('selected');
+            
+            // Credential panellarni yashirish
+            document.getElementById('scrapeCredentials').style.display = 'none';
+            document.getElementById('backendCredentials').style.display = 'none';
+            
+            // Tanlangan metodga qarab credential panel ko'rsatish
+            if (method === 'scrape') {
+                document.getElementById('scrapeCredentials').style.display = 'block';
+            } else if (method === 'backend') {
+                document.getElementById('backendCredentials').style.display = 'block';
+                backendEndpoint = document.getElementById('apiEndpoint').value;
+            }
+            
+            currentMethod = method;
+            showNotification(`Rejim o'zgartirildi: ${getMethodName(method)}`, 'info');
+        }
+        
+        // 6. Metod nomini olish
+        function getMethodName(method) {
+            const names = {
+                'demo': 'Demo Rejim',
+                'api': 'Haqiqiy Instagram API',
+                'scrape': 'Ochiq manba Scraper',
+                'backend': 'O\'z Backendingiz'
+            };
+            return names[method] || 'Demo Rejim';
+        }
+        
+        // 7. Notification ko'rsatish
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            // Animate in
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            // 4 sekunddan keyin yashirish
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 300);
+            }, 4000);
+        }
+        
+        // 8. Instagram URL ni tekshirish
+        function validateInstagramUrl(url) {
+            const instagramRegex = /https?:\/\/(www\.)?instagram\.com\/(p|reel|tv)\/[a-zA-Z0-9_-]+\/?/;
+            return instagramRegex.test(url);
+        }
+        
+        // 9. Tasodifiy izohlarni yaratish
+        function generateComments(count) {
+            const usernames = [
+                "ali_developer", "sara_designer", "john_smith", "emma_watson", "mike_jones",
+                "lisa_ray", "tom_cruise", "anna_karenina", "bob_marley", "david_beckham",
+                "uzbek_traveler", "tashkent_city", "samarkand_beauty", "bukhara_old", "khiva_history"
+            ];
+            
+            const comments = [
+                "Men ham qatnashmoqchiman!", "Ajoyib tanlov!", "G'olib men bo'laman inshaAllah",
+                "Birorta shart bormi?", "Qachongacha davom etadi?", "O'zimga kerak edi",
+                "Omadimni sinab ko'ray", "Hammaga omad!", "Birinchi sharh", "So'nggi sharh",
+                "Qanday qilib qatnashsam bo'ladi?", "Kim g'olib bo'lsa, omadli!", "Kutib turaman!",
+                "Bunday imkoniyat juda zo'r", "Har doim shu saytdan foydalanaman"
+            ];
+            
+            const generatedComments = [];
+            
+            for (let i = 0; i < count; i++) {
+                const username = usernames[Math.floor(Math.random() * usernames.length)];
+                const commentText = comments[Math.floor(Math.random() * comments.length)];
+                const hoursAgo = Math.floor(Math.random() * 24);
+                const minutesAgo = Math.floor(Math.random() * 60);
+                
+                generatedComments.push({
+                    id: i + 1,
+                    username: username,
+                    text: commentText,
+                    timestamp: `${hoursAgo} soat ${minutesAgo} daqiqa oldin`,
+                    likes: Math.floor(Math.random() * 50),
+                    entryType: Math.random() > 0.3 ? 'comment' : 'like'
+                });
+            }
+            
+            return generatedComments;
+        }
+        
+        // 10. Dinamik post yaratish
+        function createDynamicPost(username, comments) {
+            const dynamicPost = document.getElementById('dynamicPost');
+            
+            const postHtml = `
+                <div class="post-header">
+                    <div class="post-avatar">${username.charAt(0).toUpperCase()}</div>
+                    <div class="post-user">
+                        <div class="post-username">${username}</div>
+                        <div class="post-meta">Giveaway • ${getMethodName(currentMethod)}</div>
+                    </div>
+                    <button class="post-more">⋯</button>
+                </div>
+                <div class="post-image">
+                    <div class="post-image-content">
+                        <h3>🎉 TANLOV DAVOM ETMOQDA</h3>
+                        <p>G'oliblar soni: ${document.getElementById('winnersCount').value}</p>
+                        <p>Izohlar soni: ${comments.length}</p>
+                        <small>${getMethodName(currentMethod)} rejimi</small>
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <div class="action-icons">
+                        <button class="action-icon liked"><i class="fas fa-heart"></i></button>
+                        <button class="action-icon"><i class="far fa-comment"></i></button>
+                        <button class="action-icon"><i class="far fa-paper-plane"></i></button>
+                        <button class="action-icon" style="margin-left: auto;"><i class="far fa-bookmark"></i></button>
+                    </div>
+                    <div class="post-likes">${comments.reduce((sum, c) => sum + c.likes, 0)} likes</div>
+                    <div class="post-caption">
+                        <span class="username">${username}</span>
+                        Yangi tanlov boshlandi! 🎁 G'oliblar izohlar orasidan tasodifiy tanlanadi.
+                        <br>Qatnashish uchun izoh qoldiring yoki like bosing!
+                        <br><br>#giveaway #winner #instagiveaway #${username}
+                    </div>
+                </div>
+                <div class="post-comments" id="dynamicComments">
+                    ${comments.slice(0, 8).map(comment => `
+                        <div class="comment" id="comment-${comment.id}">
+                            <div class="comment-avatar">${comment.username.charAt(0).toUpperCase()}</div>
+                            <div class="comment-content">
+                                <div class="comment-username">${comment.username}</div>
+                                <div class="comment-text">${comment.text}</div>
+                                <div class="comment-time">${comment.timestamp} • ${comment.likes} likes</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            dynamicPost.innerHTML = postHtml;
+        }
+        
+        // 11. Backend API ga so'rov yuborish
+        async function callBackendAPI(postUrl) {
+            try {
+                const response = await fetch(backendEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        url: postUrl,
+                        method: currentMethod,
+                        credentials: {
+                            username: document.getElementById('igUsername')?.value || '',
+                            password: document.getElementById('igPassword')?.value || ''
+                        }
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Backend API error:', error);
+                throw error;
+            }
+        }
+        
+        // 12. Postni tahlil qilish
+        async function analyzePost() {
+            const postUrl = document.getElementById('postUrl').value;
+            const winnersCount = parseInt(document.getElementById('winnersCount').value);
+            const selectionMethod = document.querySelector('input[name="selectionMethod"]:checked').value;
+            
+            // URL ni tekshirish
+            if (!validateInstagramUrl(postUrl)) {
+                document.getElementById('urlError').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('urlError').style.display = 'none';
+            
+            // Yuklanishni ko'rsatish
+            document.getElementById('analyzeBtn').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('analysisResults').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+            
+            try {
+                let result;
+                let isDemo = false;
+                
+                // Metodga qarab ma'lumotlarni olish
+                switch (currentMethod) {
+                    case 'demo':
+                        // Demo rejim - simulyatsiya qilingan ma'lumotlar
+                        result = { 
+                            success: true, 
+                            data: { 
+                                username: 'demo_user',
+                                commentsList: generateComments(25),
+                                isDemo: true 
+                            } 
+                        };
+                        isDemo = true;
+                        break;
+                        
+                    case 'api':
+                        // Haqiqiy Instagram API (kelajakda implement qilish mumkin)
+                        showNotification('Haqiqiy API hozircha mavjud emas, demo rejimda davom etamiz', 'warning');
+                        result = { 
+                            success: true, 
+                            data: { 
+                                username: 'api_user',
+                                commentsList: generateComments(25),
+                                isDemo: true 
+                            } 
+                        };
+                        isDemo = true;
+                        break;
+                        
+                    case 'scrape':
+                        // Scraper rejimi
+                        showNotification('Scraper rejimi backend talab qiladi, demo rejimda davom etamiz', 'warning');
+                        result = { 
+                            success: true, 
+                            data: { 
+                                username: 'scraped_user',
+                                commentsList: generateComments(25),
+                                isDemo: true 
+                            } 
+                        };
+                        isDemo = true;
+                        break;
+                        
+                    case 'backend':
+                        // O'z backendingiz
+                        try {
+                            result = await callBackendAPI(postUrl);
+                            if (!result.success) {
+                                throw new Error('Backend xatolik');
+                            }
+                        } catch (error) {
+                            showNotification('Backend ishlamadi, demo rejimda davom etamiz', 'warning');
+                            result = { 
+                                success: true, 
+                                data: { 
+                                    username: 'backend_user',
+                                    commentsList: generateComments(25),
+                                    isDemo: true 
+                                } 
+                            };
+                            isDemo = true;
+                        }
+                        break;
+                }
+                
+                if (result.success) {
+                    const postData = result.data;
+                    
+                    // Izohlarni formatlash
+                    currentComments = postData.commentsList || generateComments(25);
+                    
+                    // Postni ko'rsatish
+                    createDynamicPost(postData.username || 'instagram_user', currentComments);
+                    
+                    // Tahlil natijalarini ko'rsatish
+                    showAnalysisResults(currentComments, winnersCount, selectionMethod);
+                    
+                    // Demo ekanligini bildirish
+                    if (isDemo || postData.isDemo) {
+                        showNotification('⚠️ Demo rejimda ishlayapmiz. Backend ulash uchun sozlamalarni o\'zgartiring.', 'info');
+                    } else {
+                        showNotification('✅ Haqiqiy Instagram ma\'lumotlari olindi!', 'success');
+                    }
+                    
+                } else {
+                    throw new Error('API xatolik');
+                }
+                
+            } catch (error) {
+                console.error('Tahlil xatosi:', error);
+                
+                // Xatolik bo'lsa, demo ma'lumotlar bilan ishlash
+                showNotification('❌ Xatolik yuz berdi, demo rejimda davom etamiz', 'error');
+                
+                currentComments = generateComments(25);
+                createDynamicPost('instagram_user', currentComments);
+                showAnalysisResults(currentComments, winnersCount, selectionMethod);
+                
+            } finally {
+                // Yuklanishni yashirish
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('analyzeBtn').style.display = 'block';
+            }
+        }
+        
+        // 13. Tahlil natijalarini ko'rsatish
+        function showAnalysisResults(comments, winnersCount, selectionMethod) {
+            const analysisResults = document.getElementById('analysisResults');
+            
+            // Statistikani hisoblash
+            const totalComments = comments.length;
+            const totalLikes = comments.reduce((sum, c) => sum + c.likes, 0);
+            const eligibleComments = selectionMethod === 'comments' 
+                ? comments.filter(c => c.entryType === 'comment')
+                : selectionMethod === 'likes'
+                ? comments.filter(c => c.entryType === 'like')
+                : comments;
+            
+            const eligibleCount = eligibleComments.length;
+            
+            const analysisHtml = `
+                <div class="analysis-header">
+                    <h3 style="margin: 0;">
+                        <i class="fas fa-chart-bar"></i> Post Tahlili Natijalari
+                        <br><small style="font-size: 14px; color: var(--gray);">${getMethodName(currentMethod)} rejimi</small>
+                    </h3>
+                    <button class="btn-primary" onclick="pickWinners()">
+                        <i class="fas fa-trophy"></i> G'oliblarni Tanlash
+                    </button>
+                </div>
+                <p>Post muvaffaqiyatli tahlil qilindi. Quyidagi statistikalar:</p>
+                <div class="analysis-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">${totalComments}</div>
+                        <div class="stat-label">Jami Izohlar</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${totalLikes}</div>
+                        <div class="stat-label">Jami Layklar</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${eligibleCount}</div>
+                        <div class="stat-label">Tanlovga Muvofiq</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${winnersCount}</div>
+                        <div class="stat-label">G'oliblar Soni</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${selectionMethod === 'comments' ? 'Izohlar' : selectionMethod === 'likes' ? 'Layklar' : 'Ikkalasi'}</div>
+                        <div class="stat-label">Tanlash Usuli</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${Math.round(eligibleCount / totalComments * 100)}%</div>
+                        <div class="stat-label">Tanlovga Muvofiqlik</div>
+                    </div>
+                </div>
+            `;
+            
+            analysisResults.innerHTML = analysisHtml;
+            analysisResults.style.display = 'block';
+            
+            // Ma'lumotlarni saqlash
+            currentPostData = {
+                postUrl: document.getElementById('postUrl').value,
+                winnersCount: winnersCount,
+                selectionMethod: selectionMethod,
+                comments: comments,
+                eligibleComments: eligibleComments,
+                analyzedAt: new Date().toLocaleString('uz-UZ'),
+                method: currentMethod
+            };
+            
+            // Scroll qilish
+            analysisResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // 14. G'oliblarni tanlash
+        function pickWinners() {
+            if (!currentPostData) {
+                alert('Iltimos, avval postni tahlil qiling!');
+                return;
+            }
+            
+            const { eligibleComments, winnersCount } = currentPostData;
+            
+            if (eligibleComments.length < winnersCount) {
+                alert(`Faqat ${eligibleComments.length} ta mos izoh bor. G'oliblar sonini kamaytiring.`);
+                return;
+            }
+            
+            // Tasodifiy g'oliblarni tanlash
+            const shuffled = [...eligibleComments].sort(() => 0.5 - Math.random());
+            const winners = shuffled.slice(0, winnersCount);
+            
+            // Natijalarni ko'rsatish
+            showWinners(winners);
+            
+            // G'oliblarni postda highlight qilish
+            highlightWinnersInPost(winners);
+        }
+        
+        // 15. G'oliblarni ko'rsatish
+        function showWinners(winners) {
+            const results = document.getElementById('results');
+            
+            let winnersHtml = `
+                <div class="winner-list">
+                    <h3><i class="fas fa-crown"></i> Tanlangan G'oliblar</h3>
+                    <p><strong>Jami g'oliblar:</strong> ${winners.length} kishi</p>
+                    <p><strong>Tanlov rejimi:</strong> ${getMethodName(currentPostData.method)}</p>
+            `;
+            
+            winners.forEach((winner, index) => {
+                winnersHtml += `
+                    <div class="winner-card">
+                        <i class="fas fa-trophy"></i>
+                        <div class="winner-info">
+                            <h4>${index + 1}. ${winner.username}</h4>
+                            <p>${winner.entryType === 'comment' ? 'Izoh orqali' : 'Like orqali'} qatnashgan</p>
+                            <small>"${winner.text}"</small>
+                            <div style="margin-top: 5px; font-size: 12px; color: var(--gray);">
+                                ${winner.timestamp} • ${winner.likes} likes
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            winnersHtml += `
+                    <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn-primary" onclick="downloadResults()">
+                            <i class="fas fa-download"></i> Natijalarni Yuklab Olish
+                        </button>
+                        <button class="btn-secondary" onclick="copyResultsToClipboard()">
+                            <i class="fas fa-copy"></i> Nusxalash
+                        </button>
+                        <button class="btn-secondary" onclick="resetForm()">
+                            <i class="fas fa-redo"></i> Yangi Tanlov
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            results.innerHTML = winnersHtml;
+            results.style.display = 'block';
+            
+            // Scroll qilish
+            results.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 16. G'oliblarni postda highlight qilish
+        function highlightWinnersInPost(winners) {
+            winners.forEach(winner => {
+                const commentElement = document.getElementById(`comment-${winner.id}`);
+                if (commentElement) {
+                    commentElement.classList.add('highlighted');
+                    
+                    // Scroll to highlighted comment
+                    setTimeout(() => {
+                        commentElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }, 1000);
+                }
+            });
+        }
+        
+        // 17. Natijalarni nusxalash
+        async function copyResultsToClipboard() {
+            if (!currentPostData) return;
+            
+            const winners = currentPostData.eligibleComments
+                .sort(() => 0.5 - Math.random())
+                .slice(0, currentPostData.winnersCount);
+            
+            const resultsText = `
+Instagram Giveaway Genie - G'oliblar Ro'yxati
+===========================================
+
+Instagram Post: ${currentPostData.postUrl}
+Tanlov Sanasi: ${currentPostData.analyzedAt}
+G'oliblar Soni: ${currentPostData.winnersCount}
+Tanlov Usuli: ${currentPostData.selectionMethod === 'comments' ? 'Faqat Izohlar' : 
+                 currentPostData.selectionMethod === 'likes' ? 'Faqat Layklar' : 'Ikkalasi Ham'}
+Jami Ishtirokchilar: ${currentPostData.comments.length}
+
+G'OLIBLAR:
+${winners.map((winner, index) => 
+    `${index + 1}. @${winner.username} - "${winner.text}" (${winner.timestamp})`
+).join('\n')}
+
+© 2024 GiveawayGenie.com
+            `.trim();
+            
+            try {
+                await navigator.clipboard.writeText(resultsText);
+                showNotification('✅ G\'oliblar ro\'yxati nusxalandi!', 'success');
+            } catch (error) {
+                showNotification('❌ Nusxalashda xatolik', 'error');
+            }
+        }
+        
+        // 18. Natijalarni yuklab olish
+        function downloadResults() {
+            if (!currentPostData) return;
+            
+            const winners = currentPostData.eligibleComments
+                .sort(() => 0.5 - Math.random())
+                .slice(0, currentPostData.winnersCount);
+            
+            const resultsText = `
+GIVEAWAY GENIE - G'OLIBLAR RO'YXATI
+====================================
+
+Instagram Post: ${currentPostData.postUrl}
+Tanlov Sanasi: ${currentPostData.analyzedAt}
+G'oliblar Soni: ${currentPostData.winnersCount}
+Tanlov Usuli: ${currentPostData.selectionMethod === 'comments' ? 'Faqat Izohlar' : 
+                 currentPostData.selectionMethod === 'likes' ? 'Faqat Layklar' : 'Ikkalasi Ham'}
+Jami Ishtirokchilar: ${currentPostData.comments.length}
+Ish Rejimi: ${getMethodName(currentPostData.method)}
+
+------------------------------
+           G'OLIBLAR
+------------------------------
+${winners.map((winner, index) => 
+    `${index + 1}. ${winner.username} - ${winner.entryType === 'comment' ? 'Izoh' : 'Like'} orqali`
+).join('\n')}
+
+------------------------------
+Tanlov ID: GIV-${Date.now()}
+Sertifikat Sana: ${new Date().toLocaleDateString('uz-UZ')}
+Berilgan: giveawaygenie.com
+------------------------------
+
+© 2024 GiveawayGenie.com - 100% Bepul xizmat
+            `;
+            
+            const blob = new Blob([resultsText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `giveaway-results-${Date.now()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification('✅ Natijalar yuklab olindi!', 'success');
+        }
+        
+        // 19. Formani qayta tiklash
+        function resetForm() {
+            document.getElementById('postUrl').value = 'https://www.instagram.com/p/Cxample123/';
+            document.getElementById('winnersCount').value = '3';
+            document.querySelector('input[name="selectionMethod"][value="comments"]').checked = true;
+            
+            // Barcha radio optionlarni tanlash
+            document.querySelectorAll('.radio-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Birinchi optionni tanlash
+            document.querySelector('.radio-option').classList.add('selected');
+            
+            // Natijalarni yashirish
+            document.getElementById('analysisResults').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('dynamicPost').innerHTML = '';
+            
+            // Scroll qilish
+            document.getElementById('giveaway-form').scrollIntoView({ behavior: 'smooth' });
+            
+            showNotification('✅ Yangi tanlov uchun tayyor!', 'success');
+        }
+        
+        // 20. Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', function() {
+            // Demo izohlarni yuklash
+            const demoComments = generateComments(6);
+            const commentsContainer = document.getElementById('postComments');
+            
+            demoComments.forEach(comment => {
+                const commentHtml = `
+                    <div class="comment">
+                        <div class="comment-avatar">${comment.username.charAt(0).toUpperCase()}</div>
+                        <div class="comment-content">
+                            <div class="comment-username">${comment.username}</div>
+                            <div class="comment-text">${comment.text}</div>
+                            <div class="comment-time">${comment.timestamp}</div>
+                        </div>
+                    </div>
+                `;
+                commentsContainer.innerHTML += commentHtml;
+            });
+            
+            // Radio optionlarni tanlash
+            document.querySelector('.radio-option').classList.add('selected');
+            
+            // API endpoint ni yangilash
+            document.getElementById('apiEndpoint').addEventListener('change', function() {
+                backendEndpoint = this.value;
+                showNotification('API endpoint yangilandi', 'info');
+            });
+            
+            // Menu bosilganda yopish
+            document.addEventListener('click', function(event) {
+                const navLinks = document.querySelector('.nav-links');
+                const menuBtn = document.querySelector('.menu-btn');
+                
+                if (window.innerWidth <= 768 && 
+                    navLinks.classList.contains('active') && 
+                    !event.target.closest('.nav-links') && 
+                    !event.target.closest('.menu-btn')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+            
+            // Saytga kirishda xabar ko'rsatish
+            setTimeout(() => {
+                showNotification('🎉 GiveawayGenie ga xush kelibsiz! Demo rejimda ishlayapmiz.', 'info');
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
